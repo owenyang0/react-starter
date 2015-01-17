@@ -85,7 +85,7 @@ var Photo = React.createClass({
 
         <div className='bar'>
           <button onClick={this.toggleLiked} className={buttonClass}>
-            ♥
+          ♬
           </button>
           <span>{this.props.caption}</span>
         </div>
@@ -98,16 +98,16 @@ var PhotoGallery = React.createClass({
 
   getDataFromServer: function() {
     return [{
-      url: 'http://owenyang0.github.io/img/background.jpg',
-      caption: 'Headset'
+      url: '/images/react.png',
+      caption: 'React'
     },
     {
-      url: 'http://owenyang0.github.io/images/mocha.png',
+      url: '/images/mocha.png',
       caption: 'Mocha'
     },
     {
-      url: 'http://owenyang0.github.io/images/catalog.png',
-      caption: 'Catelog'
+      url: '/images/npm.png',
+      caption: 'npm'
     }];
   },
 
@@ -126,4 +126,4 @@ var PhotoGallery = React.createClass({
   }
 });
 
-React.render(<PhotoGallery />, document.body);
+React.render(<PhotoGallery />, document.querySelector('.container'));
