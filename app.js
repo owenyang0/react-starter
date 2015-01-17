@@ -27,36 +27,103 @@
 // React.render(<Photo imageURL='http://owenyang0.github.io/img/background.jpg' caption='Headset' />, document.body);
 
 // State
- var Photo = React.createClass({
- 
-   toggleLiked: function() {
-     this.setState({
-       liked: !this.state.liked
-     });
-   },
- 
-   getInitialState: function() {
-     return {
-       liked: false
-     }
-   },
- 
-   render: function() {
-     var buttonClass = this.state.liked ? 'active' : '';
- 
-     return (
-       <div className='photo'>
-         <img src={this.props.src} />
- 
-         <div className='bar'>
-           <button onClick={this.toggleLiked} className={buttonClass}>
-             ♥
-           </button>
-           <span>{this.props.caption}</span>
-         </div>
-       </div>
-     )
-   }
- });
- 
- React.render(<Photo src='http://owenyang0.github.io/img/background.jpg' caption='Headset'/>, document.body);
+// var Photo = React.createClass({
+// 
+//   toggleLiked: function() {
+//     this.setState({
+//       liked: !this.state.liked
+//     });
+//   },
+// 
+//   getInitialState: function() {
+//     return {
+//       liked: false
+//     }
+//   },
+// 
+//   render: function() {
+//     var buttonClass = this.state.liked ? 'active' : '';
+// 
+//     return (
+//       <div className='photo'>
+//         <img src={this.props.src} />
+// 
+//         <div className='bar'>
+//           <button onClick={this.toggleLiked} className={buttonClass}>
+//             ♥
+//           </button>
+//           <span>{this.props.caption}</span>
+//         </div>
+//       </div>
+//     )
+//   }
+// });
+// 
+// React.render(<Photo src='http://owenyang0.github.io/img/background.jpg' caption='Headset'/>, document.body);
+
+// Composition
+var Photo = React.createClass({
+
+  toggleLiked: function() {
+    this.setState({
+      liked: !this.state.liked
+    });
+  },
+
+  getInitialState: function() {
+    return {
+      liked: false
+    }
+  },
+
+  render: function() {
+    var buttonClass = this.state.liked ? 'active' : '';
+
+    return (
+      <div className='photo'>
+        <img src={this.props.src} />
+
+        <div className='bar'>
+          <button onClick={this.toggleLiked} className={buttonClass}>
+            ♥
+          </button>
+          <span>{this.props.caption}</span>
+        </div>
+      </div>
+    )
+  }
+});
+
+var PhotoGallery = React.createClass({
+
+  getDataFromServer: function() {
+    return [{
+      url: 'http://owenyang0.github.io/img/background.jpg',
+      caption: 'Headset'
+    },
+    {
+      url: 'http://owenyang0.github.io/images/mocha.png',
+      caption: 'Mocha'
+    },
+    {
+      url: 'http://owenyang0.github.io/images/catalog.png',
+      caption: 'Catelog'
+    }];
+  },
+
+  render: function() {
+    var data = this.getDataFromServer();
+
+    var photos = data.map(function(photo) {
+      return <Photo src={photo.url} caption={photo.caption} />
+    });
+
+    return (
+      <div className='photo-gallery'>
+        {photos}
+      </div>
+    )
+  }
+});
+
+React.render(<PhotoGallery />, document.body);
