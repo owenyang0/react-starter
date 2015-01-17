@@ -98,15 +98,15 @@ var PhotoGallery = React.createClass({
 
   getDataFromServer: function() {
     return [{
-      url: '/images/react.png',
+      url: './images/react.png',
       caption: 'React'
     },
     {
-      url: '/images/mocha.png',
+      url: './images/mocha.png',
       caption: 'Mocha'
     },
     {
-      url: '/images/npm.png',
+      url: './images/npm.png',
       caption: 'npm'
     }];
   },
